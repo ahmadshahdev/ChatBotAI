@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./App.css";
+import Answer from "./components/answer";
 
 function App() {
 	const [question, setQuestion] = useState("");
-	const [result, setResult] = useState(""); // Starts empty instead of "undefined"
+	const [result, setResult] = useState([]);
 
 	const askQuestion = async () => {
 		if (!question.trim()) return; // Don't send empty requests
@@ -33,10 +34,15 @@ function App() {
 
 			const data = await response.json();
 
+			let datastring = data.candidates[0].content.parts[0].text;
+			datastring = datastring.split("# ");
+			datastring = datastring.map((item) => item.trim());
+
 			// Extract the text safely
 			if (data.candidates && data.candidates.length > 0) {
-				setResult(data.candidates[0].content.parts[0].text);
-				setQuestion(""); // Clears the input box automatically
+				setResult(datastring);
+				console.log(datastring);
+				//setQuestion(""); // Clears the input box automatically
 			}
 		} catch (error) {
 			console.error(error);
@@ -51,7 +57,18 @@ function App() {
 			<div className="col-span-4 flex flex-col">
 				{/* Scrollbar is hidden here, but scrolling still works */}
 				<div className=" container flex-1 overflow-y-auto hide-scrollbar p-8 text-left">
-					<div className="text-white">{result}</div>
+					<div className="text-white">
+						<ul>
+							{/* {result} */}
+
+							{result &&
+								result.map((item, index) => (
+									<li className="text-left p-1.5">
+										<Answer ans={item} key={index} />
+									</li>
+								))}
+						</ul>
+					</div>
 				</div>
 
 				<div className="p-4">
