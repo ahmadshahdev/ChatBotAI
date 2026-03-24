@@ -161,7 +161,7 @@ function App() {
 
 				{/* Sidebar Watermark */}
 				<div className="mt-auto pt-4 border-t border-zinc-800 text-center">
-					<p className="text-xs text-zinc-500 font-medium tracking-wide">
+					<p className="text-[14px] text-zinc-500 font-medium tracking-wide">
 						Developed by Syed Ahmad Shah
 					</p>
 				</div>

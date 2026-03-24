@@ -1,16 +1,41 @@
-# React + Vite
+# ChatBoatAI 🤖
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ChatBoatAI is a responsive, intelligent web-based chatbot built using React.js and Tailwind CSS. It integrates the Google Gemini AI (`gemini-2.5-flash` model) to provide real-time, context-aware answers. 
 
-Currently, two official plugins are available:
+Developed by **Syed Ahmad Shah**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
+* **Persistent Memory:** Uses browser `localStorage` to save your chat history even after you refresh the page.
+* **Markdown Rendering:** Automatically formats the AI's responses (bolding, headings, code blocks, and bullet points) for perfect readability.
+* **Mobile Responsive:** Features a sleek, sliding hamburger menu for mobile devices while maintaining a fixed sidebar on desktop.
+* **Premium UI/UX:** Built with a dark-mode aesthetic, custom scrollbars, auto-scrolling chat windows, and distinct message bubbles.
 
-## React Compiler
+## 🛠️ Tech Stack
+* **Frontend:** React.js (Vite)
+* **Styling:** Tailwind CSS
+* **API:** Google Gemini API (2.5 Flash)
+* **Packages:** `react-markdown`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧠 How It Works (Core Architecture)
 
-## Expanding the ESLint configuration
+### State Management
+* `input`: Holds the text currently being typed by the user.
+* `chatHistory`: An array of objects storing all past Question/Answer pairs. Initializes from `localStorage`.
+* `isLoading`: A boolean that disables the send button and triggers the typing animation while waiting for the API.
+* `isSidebarOpen`: Controls the sliding mobile menu visibility.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Core Functions
+* `askQuestion()`: The main engine. It prevents empty submissions, triggers the loading state, sends a secure POST request to the Gemini API, extracts the markdown response, and updates the chat history.
+* `deleteChat(id)`: Uses the `.filter()` method to remove specific conversations from the history array.
+
+### React Hooks
+* **Local Storage Sync:** A `useEffect` hook watches the `chatHistory` array. Whenever a message is added or deleted, it automatically uses `JSON.stringify` to update the browser's hard drive.
+* **Auto-Scrolling:** A `useEffect` hook tied to a `useRef` at the bottom of the chat window ensures the screen smoothly scrolls down whenever a new message appears.
+
+## 🚀 How to Run Locally
+
+1. Clone this repository to your local machine.
+2. Open the folder in your terminal and run `npm install` to download the dependencies.
+3. Create a `.env` file in the root directory and add your Gemini API key:
+   `VITE_CHATBOAT_API_KEY=your_api_key_here`
+4. Run `npm run dev` to start the local server.
