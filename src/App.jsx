@@ -99,7 +99,7 @@ function App() {
 	};
 
 	return (
-		<div className="flex h-screen text-white bg-zinc-950 overflow-hidden">
+		<div className="flex h-[100dvh] text-white bg-zinc-950 overflow-hidden">
 			{/* NEW: Dark Overlay for mobile (clicks outside close the sidebar) */}
 			{isSidebarOpen && (
 				<div
