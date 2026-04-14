@@ -50,7 +50,7 @@ function App() {
 
 		try {
 			const apiKey = import.meta.env.VITE_CHATBOAT_API_KEY;
-			const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+			const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
 			const response = await fetch(URL, {
 				method: "POST",
