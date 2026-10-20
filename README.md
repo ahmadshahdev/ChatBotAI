@@ -1,3 +1,6 @@
+## Live Link:
+- [Chat Bot](https://chat-bot-ai-dun.vercel.app)
+
 # ChatBoatAI 🤖
 
 ChatBoatAI is a responsive, intelligent web-based chatbot built using React.js and Tailwind CSS. It integrates the Google Gemini AI (`gemini-2.5-flash` model) to provide real-time, context-aware answers. 
